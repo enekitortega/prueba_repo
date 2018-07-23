@@ -1,59 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>Highcharts data from JSON Response</title>
-		<style>
-		body{
-			margin-top: 30px;
-			margin-left:40px;
-		}
-		</style>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>		
-	<script src="http://code.highcharts.com/highcharts.js"></script>
-	<script type="text/javascript">
-        $(function () {
-                var processed_json = new Array();   
-                $.getJSON('http://s3.amazonaws.com/logtrust-static/test/test/data1.json', function(data) {
-                    // Populate series
-                    for (i = 0; i < data.length; i++){
-                        processed_json.push([data[i].cat, data[i].value]);
-                    }
-                 
-                    // draw chart
-                    $('#container').highcharts({
-                    chart: {
-                        type: "column"
-                    },
-                    title: {
-                        text: "Student data"
-                    },
-                    xAxis: {
-                        type: 'category',
-                        allowDecimals: false,
-                        title: {
-                            text: ""
-                        }
-                    },
-                    yAxis: {
-                        title: {
-                            text: "Scores"
-                        }
-                    },
-                    series: [{
-	                    name: 'Subjects',
-                        data: processed_json
-                    }]
-                }); 
-            });
-        });
-    </script>
-</head>
+<html>
+<script>
+var myArray = [{"d":1435708800000,"cat":"Cat 1","value":832.803815816826},{"d":1435795200000,"cat":"Cat 1","value":388.91650675134025},{"d":1435881600000,"cat":"Cat 1","value":935.6381772249989},{"d":1435968000000,"cat":"Cat 1","value":54.70066995525236},{"d":1436054400000,"cat":"Cat 1","value":181.3457667464815},{"d":1436140800000,"cat":"Cat 1","value":891.9970685394005}];
+
+
+	var txt = '{"name":"John", "age":30, "city":"New York"}'
+	var obj = JSON.parse(txt1);
+
+
+function myFunction(arr) {
+
+    var out = "";
+    var i;
+    for(i = 0; i < arr.length; i++) {
+        out += '<a href="' + arr[i].d + '">' + 
+        arr[i].value + '</a><br>';
+    }
+    document.getElementById("id01").innerHTML = out;
+}
+</script>
 <body>
-   <div style="width: 800px; margin: 2em auto; padding: 1em; border: 1px solid red; border-radius: 0.5em">
-	Highcharts data load from a JSON using manual JSON Processing
-	</div>
-    <div id="container" style="height: 400px"></div>
-    
+
+<div id="id01">
+<h2>Let AJAX change this text</h2>
+  <button type="button" onclick="myFunction(myArray)">Change Content</button>
+</div>
+
+
 </body>
 </html>
